@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mecánico Ventura</title>
+  <style>
+    :root{
+      --brand:#004466; --accent:#006699; --cta:#e63946; --bg:#f5f5f5; --card:#fff; --text:#222;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+    .topbar{background:var(--accent);display:flex;justify-content:center;gap:10px;padding:10px;flex-wrap:wrap}
+    .lang-btn{background:#fff;color:var(--accent);border:0;padding:8px 14px;border-radius:24px;cursor:pointer;font-weight:700;display:inline-flex;align-items:center;gap:8px}
+    .lang-btn.active{background:#e6f2f8}
+    header{background:var(--brand);color:#fff;padding:40px 20px;text-align:center}
+    header h1{margin:0;font-size:clamp(1.6rem,2.8vw,2.2rem)}
+    header p{margin-top:10px;font-size:clamp(1rem,2vw,1.05rem)}
+    .feature-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:18px;max-width:980px;margin-left:auto;margin-right:auto}
+    .feature{background:#ffffffcc;padding:14px;border-radius:10px;color:#000;font-weight:600}
+    .container{max-width:1200px;margin:0 auto;padding:36px 18px}
+    h2{color:var(--brand);text-align:center;margin-bottom:18px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+    .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.06)}
+    .card h3{margin:0 0 8px;color:var(--accent)}
+    .cta{display:inline-block;margin-top:18px;padding:12px 20px;background:var(--cta);color:#fff;border-radius:8px;text-decoration:none;font-weight:700}
+    footer{background:var(--brand);color:#fff;text-align:center;padding:18px;margin-top:28px}
+    /* contact list style */
+    .contact-list{display:inline-block;text-align:left;line-height:1.9}
+    /* small screens */
+    @media (max-width:520px){
+      header{padding:28px 14px}
+      .feature-row{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+<!-- Language selector -->
+<div class="topbar" role="navigation" aria-label="Language selector">
+  <button id="btn-es" class="lang-btn active" aria-pressed="true">🇲🇽 Español</button>
+  <button id="btn-en" class="lang-btn" aria-pressed="false">🇺🇸 English</button>
+</div>
+
+<!-- Spanish content -->
+<main id="es" aria-hidden="false">
+  <header>
+	<h1>Tel 6461097858 </h1>
+    <h1>Diagnóstico Preciso Con Scanner Profesional</h1>
+    <p>Más de 40 años de experiencia en servicio mecánico y auto-eléctrico. Diagnóstico computarizado para todas las marcas, reparaciones garantizadas y soluciones precisas.</p>
+
+    <div class="feature-row" role="list">
+      <div class="feature" role="listitem">Precios Bajos: Siempre buscamos darte la mejor tarifa.</div>
+      <div class="feature" role="listitem">Garantía Escrita: Protección total en mano de obra.</div>
+    </div>
+
+    <div style="margin-top:18px">
+      <a href="#contacto" class="cta" onclick="book('es')">Reserva Tu Cita Ahora</a>
+    </div>
+  </header>
+
+  <section class="container" id="servicios-es">
+    <h2>Nuestros Servicios</h2>
+    <p style="text-align:center;max-width:900px;margin:0 auto 18px">Todo lo que tu vehículo necesita: mantenimiento preventivo y reparaciones complejas para todas las marcas y modelos.</p>
+    <div class="grid" aria-label="Servicios en español">
+      <div class="card"><h3>Mantenimiento Preventivo</h3><p>Cambios de aceite, filtros, líquidos y revisiones completas.</p></div>
+      <div class="card"><h3>Reparación de Motor</h3><p>Diagnóstico y reparación de motores gasolina y diésel.</p></div>
+      <div class="card"><h3>Transmisión</h3><p>Servicio y reparación de transmisiones automáticas y manuales.</p></div>
+      <div class="card"><h3>Frenos y Suspensión</h3><p>Balatas, discos, amortiguadores y sistemas de suspensión.</p></div>
+      <div class="card"><h3>Diagnóstico por Scanner</h3><p>Lectura de códigos, análisis eléctrico y programación de módulos.</p></div>
+      <div class="card"><h3>Servicio de Camionetas</h3><p>Ford, Chevrolet, Dodge, Toyota, Nissan y más.</p></div>
+    </div>
+  </section>
+
+  <section class="container" id="proceso-es">
+    <h2>Proceso Simple</h2>
+    <div class="grid">
+      <div class="card"><h3>Paso 1: Contacta</h3><p>Llámanos o agenda tu cita en línea. Respuesta en 20 minutos.</p></div>
+      <div class="card"><h3>Paso 2: Diagnóstico</h3><p>Diagnóstico completo con precios bajos.</p></div>
+      <div class="card"><h3>Paso 3: Presupuesto</h3><p>Presupuesto claro y detallado. Sin sorpresas.</p></div>
+      <div class="card"><h3>Paso 4: Reparación</h3><p>Refacciones de calidad y garantía incluida.</p></div>
+    </div>
+  </section>
+
+  <section class="container" id="contacto">
+    <h2>Contacto</h2>
+    <div style="text-align:center">
+      <div class="contact-list" aria-label="Información de contacto en español">
+        <div>📞 <strong>Tel:</strong> 6461097858</div>
+        <div>✉️ <strong>Email:</strong> info@mecanicoventura.com</div>
+        <div>📍 <strong>Dirección:</strong> Ensena Baja California</div>
+        <div>⏰ <strong>Atención continua:</strong> 365 días al año, 24 horas</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>© 2025 Mecánico Ventura. Todos los derechos reservados.</div>
+  </footer>
+</main>
+
+<!-- English content -->
+<main id="en" style="display:none" aria-hidden="true">
+  <header>
+	<h1>Tel 6461097858 </h1>
+    <h1>Precise Diagnosis With Professional Scanner</h1>
+    <p>Over 40 years of experience in mechanical and auto‑electrical service. Computerized diagnostics for all brands, guaranteed repairs and precise solutions.</p>
+
+    <div class="feature-row" role="list">
+      <div class="feature" role="listitem">Lower Prices: We always aim to give you the best rate.</div>
+      <div class="feature" role="listitem">Written Warranty: Full protection on labor.</div>
+    </div>
+
+    <div style="margin-top:18px">
+      <a href="#contact-en" class="cta" onclick="book('en')">Book Your Appointment Now</a>
+    </div>
+  </header>
+
+  <section class="container" id="services-en">
+    <h2>Our Services</h2>
+    <p style="text-align:center;max-width:900px;margin:0 auto 18px">Everything your vehicle needs: preventive maintenance and complex repairs for all makes and models.</p>
+    <div class="grid" aria-label="Services in English">
+      <div class="card"><h3>Preventive Maintenance</h3><p>Oil changes, filters, fluids, and full inspections.</p></div>
+      <div class="card"><h3>Engine Repair</h3><p>Diagnosis and repair of gasoline and diesel engines.</p></div>
+      <div class="card"><h3>Transmission</h3><p>Service and repair of automatic and manual transmissions.</p></div>
+      <div class="card"><h3>Brakes & Suspension</h3><p>Pads, discs, shock absorbers, and suspension systems.</p></div>
+      <div class="card"><h3>Scanner Diagnostics</h3><p>Error code reading, electrical analysis, and module programming.</p></div>
+      <div class="card"><h3>Pickup Truck Service</h3><p>Ford, Chevrolet, Dodge, Toyota, Nissan, and more.</p></div>
+    </div>
+  </section>
+
+  <section class="container" id="process-en">
+    <h2>Simple Process</h2>
+    <div class="grid">
+      <div class="card"><h3>Step 1: Contact</h3><p>Call us or book online. Response within 20 minutes.</p></div>
+      <div class="card"><h3>Step 2: Diagnosis</h3><p>Complete diagnosis with lower prices.</p></div>
+      <div class="card"><h3>Step 3: Estimate</h3><p>Clear and detailed estimate. No surprises.</p></div>
+      <div class="card"><h3>Step 4: Repair</h3><p>Quality parts and warranty included.</p></div>
+    </div>
+  </section>
+
+  <section class="container" id="contact-en">
+    <h2>Contact</h2>
+    <div style="text-align:center">
+      <div class="contact-list" aria-label="Contact information in English">
+        <div>📞 <strong>Tel:</strong> 6461097858</div>
+        <div>✉️ <strong>Email:</strong> info@mecanicoventura.com</div>
+        <div>📍 <strong>Address:</strong> Ensena, Baja California</div>
+        <div>⏰ <strong>Continuous service:</strong> 365 days a year, 24 hours</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>© 2025 Mecánico Ventura. All rights reserved.</div>
+  </footer>
+</main>
+
+<script>
+  // Robust language toggle and navigation
+  (function(){
+    const btnEs = document.getElementById('btn-es');
+    const btnEn = document.getElementById('btn-en');
+    const elEs = document.getElementById('es');
+    const elEn = document.getElementById('en');
+    let current = 'es';
+
+    function setActive(lang){
+      current = lang;
+      if(lang === 'es'){
+        elEs.style.display = 'block';
+        elEs.setAttribute('aria-hidden','false');
+        elEn.style.display = 'none';
+        elEn.setAttribute('aria-hidden','true');
+        btnEs.classList.add('active'); btnEs.setAttribute('aria-pressed','true');
+        btnEn.classList.remove('active'); btnEn.setAttribute('aria-pressed','false');
+        document.documentElement.lang = 'es';
+      } else {
+        elEn.style.display = 'block';
+        elEn.setAttribute('aria-hidden','false');
+        elEs.style.display = 'none';
+        elEs.setAttribute('aria-hidden','true');
+        btnEn.classList.add('active'); btnEn.setAttribute('aria-pressed','true');
+        btnEs.classList.remove('active'); btnEs.setAttribute('aria-pressed','false');
+        document.documentElement.lang = 'en';
+      }
+    }
+
+    // Attach handlers
+    btnEs.addEventListener('click', ()=> setActive('es'));
+    btnEn.addEventListener('click', ()=> setActive('en'));
+
+    // Expose book function for CTAs to scroll to correct contact section
+    window.book = function(lang){
+      setActive(lang);
+      // small timeout to ensure section is visible before scrolling
+      setTimeout(()=>{
+        const targetId = (lang === 'es') ? 'contacto' : 'contact-en';
+        const el = document.getElementById(targetId);
+        if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+      }, 80);
+    };
+
+    // Initialize (ensures consistent state)
+    setActive(current);
+  })();
+</script>
+
+</body>
+</html>
