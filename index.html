@@ -6,43 +6,38 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Mecánico Ventura</title>
   <!-- Estilos (añádelos en tu CSS o dentro de <style> en el head) -->
-<style>
-.whatsapp-float {
-  position: fixed;
-  right: 20px;           /* distancia desde el borde derecho */
-  bottom: 20px;          /* distancia desde el borde inferior */
-  width: 56px;
-  height: 56px;
-  background: #25D366;   /* color WhatsApp */
-  color: #fff;
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
-  z-index: 9999;         /* por encima del contenido */
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-  will-change: transform;
-}
-
-/* Efecto al pasar el cursor */
-.whatsapp-float:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 24px rgba(0,0,0,0.28);
-}
-
-/* Ajustes para pantallas pequeñas */
-@media (max-width: 480px) {
-  .whatsapp-float {
-    right: 12px;
-    bottom: 12px;
-    width: 50px;
-    height: 50px;
-  }
-}
-</style>
   <style>
+    .whatsapp-float {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      width: 56px;
+      height: 56px;
+      background: #25D366;
+      color: #fff;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+      z-index: 9999;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      will-change: transform;
+    }
+    .whatsapp-float:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.28);
+    }
+    @media (max-width: 480px) {
+      .whatsapp-float {
+        right: 12px;
+        bottom: 12px;
+        width: 50px;
+        height: 50px;
+      }
+    }
+
     :root{
       --brand:#004466; --accent:#006699; --cta:#e63946; --bg:#f5f5f5; --card:#fff; --text:#222;
     }
@@ -51,7 +46,7 @@
     .topbar{background:var(--accent);display:flex;justify-content:center;gap:10px;padding:10px;flex-wrap:wrap}
     .lang-btn{background:#fff;color:var(--accent);border:0;padding:8px 14px;border-radius:24px;cursor:pointer;font-weight:700;display:inline-flex;align-items:center;gap:8px}
     .lang-btn.active{background:#e6f2f8}
-    header{background:var(--brand);color:#fff;padding:40px 20px;text-align:center}
+    header{background:var(--brand);color:#fff;padding:40px 20px;text-align:center;position:relative}
     header h1{margin:0;font-size:clamp(1.6rem,2.8vw,2.2rem)}
     header p{margin-top:10px;font-size:clamp(1rem,2vw,1.05rem)}
     .feature-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:18px;max-width:980px;margin-left:auto;margin-right:auto}
@@ -63,15 +58,33 @@
     .card h3{margin:0 0 8px;color:var(--accent)}
     .cta{display:inline-block;margin-top:18px;padding:12px 20px;background:var(--cta);color:#fff;border-radius:8px;text-decoration:none;font-weight:700}
     footer{background:var(--brand);color:#fff;text-align:center;padding:18px;margin-top:28px}
-    /* contact list style */
     .contact-list{display:inline-block;text-align:left;line-height:1.9}
-    /* small screens */
+
+    /* header contact style */
+    .header-contact {
+      position:absolute;
+      top:10px;
+      right:20px;
+      font-size:1rem;
+      font-weight:600;
+    }
+    .header-contact a {
+      color:#60a5fa;
+      text-decoration:none;
+      font-weight:700;
+    }
+    .header-contact a:hover {
+      text-decoration:underline;
+    }
+
     @media (max-width:520px){
       header{padding:28px 14px}
       .feature-row{grid-template-columns:1fr}
+      .header-contact{position:static;margin-top:10px;text-align:center}
     }
   </style>
 </head>
+
 
 <body>
 
@@ -84,8 +97,25 @@
 <!-- Spanish content -->
 <main id="es" aria-hidden="false">
   <header>
-	<h1>Tel 6461097858 </h1>
-    <h1>Diagnóstico Preciso Con Scanner Profesional</h1>
+
+ <div class="header-contact">
+    <!-- Español -->
+    <span class="lang-es">
+      📞 <a href="tel:6461097858">646 109 7858</a> &nbsp;|&nbsp;
+      <a href="tel:6462404309">646 240 4309</a>
+    </span>
+    <!-- English -->
+    <span class="lang-en" style="display:none;">
+      📞 Call us: <a href="tel:6461097858">646 109 7858</a> &nbsp;|&nbsp;
+      <a href="tel:6462404309">646 240 4309</a>
+    </span>
+  </div>
+
+  <!-- Branding -->
+  <h1>Mecánico Ventura</h1>
+  <p class="lang-es">Tu aliado confiable en mantenimiento y reparación automotriz</p>
+  <p class="lang-en" style="display:none;">Your trusted partner in automotive maintenance and repair</p>
+	    <h1>Diagnóstico Preciso Con Scanner Profesional</h1>
     <p>Más de 40 años de experiencia en servicio mecánico y auto-eléctrico. Diagnóstico computarizado para todas las marcas, reparaciones garantizadas y soluciones precisas.</p>
 
     <div class="feature-row" role="list">
@@ -173,8 +203,25 @@
 
 <!-- English content -->
 <main id="en" style="display:none" aria-hidden="true">
-  <header>
-	<h1>Tel 6461097858 </h1>
+  <header class="site-header">
+  <!-- Contact info -->
+  <div class="header-contact">
+    <!-- Español -->
+    <span class="lang-es">
+      📞 <a href="tel:6461097858">646 109 7858</a> &nbsp;|&nbsp;
+      <a href="tel:6462404309">646 240 4309</a>
+    </span>
+    <!-- English -->
+    <span class="lang-en" style="display:none;">
+      📞 Call us: <a href="tel:6461097858">646 109 7858</a> &nbsp;|&nbsp;
+      <a href="tel:6462404309">646 240 4309</a>
+    </span>
+  </div>
+
+  <!-- Branding -->
+  <h1>Mecánico Ventura</h1>
+  <p class="lang-es">Your trusted partner in automotive maintenance and repair</p>
+  <p class="lang-en" style="display:none;">Your trusted partner in automotive maintenance and repair</p>
     <h1>Precise Diagnosis With Professional Scanner</h1>
     <p>Over 40 years of experience in mechanical and auto‑electrical service. Computerized diagnostics for all brands, guaranteed repairs and precise solutions.</p>
 
@@ -326,13 +373,3 @@
 </a>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
