@@ -332,75 +332,19 @@
   </script>
 
   <!-- Language toggle + behavior -->
-  <script>
-    (function(){
-      const btnEs = document.getElementById('btn-es');
-      const btnEn = document.getElementById('btn-en');
-      const elEs  = document.getElementById('es');
-      const elEn  = document.getElementById('en');
-
-      function setActive(lang){
-        if(lang === 'es'){
-          elEs.style.display = 'block';
-          elEs.setAttribute('aria-hidden','false');
-          elEn.style.display = 'none';
-          elEn.setAttribute('aria-hidden','true');
-          btnEs.classList.add('active'); btnEs.setAttribute('aria-pressed','true');
-          btnEn.classList.remove('active'); btnEn.setAttribute('aria-pressed','false');
-          document.documentElement.lang = 'es';
-        } else {
-          elEn.style.display = 'block';
-          elEn.setAttribute('aria-hidden','false');
-          elEs.style.display = 'none';
-          elEs.setAttribute('aria-hidden','true');
-          btnEn.classList.add('active'); btnEn.setAttribute('aria-pressed','true');
-          btnEs.classList.remove('active'); btnEs.setAttribute('aria-pressed','false');
-          document.documentElement.lang = 'en';
-        }
-
-        // Keep Tawk.to and WhatsApp aligned to language
-        if (typeof window.setTawkLanguage === 'function') window.setTawkLanguage(lang);
-        if (typeof window.updateWhatsAppUX === 'function') window.updateWhatsAppUX(lang);
-
-        // Persist preference (optional)
-        try { localStorage.setItem('siteLang', lang); } catch(e) {}
-      }
-
-      // Make available for others (e.g., the robust patch wraps this)
-      window.setActive = setActive;
-
-      // CTA helper: switch language and scroll to proper section
-      window.book = function(lang){
-        setActive(lang);
-        setTimeout(()=>{
-          const targetId = (lang === 'es') ? 'contacto' : 'contact-en';
-          const el = document.getElementById(targetId);
-          if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
-        }, 80);
-      };
-
-      // Click handlers
-      btnEs.addEventListener('click', () => setActive('es'));
-      btnEn.addEventListener('click', () => setActive('en'));
-
-      // Initial language detection:
-      // 1) query ?lang=en|es, 2) URL path /en/, 3) saved preference, 4) browser language, 5) default 'es'
-      let initLang = 'es';
-      const qs = new URLSearchParams(location.search).get('lang');
-      if (qs === 'en' || qs === 'es') initLang = qs;
-      else if (location.pathname.toLowerCase().includes('/en')) initLang = 'en';
-      else {
-        try {
-          const saved = localStorage.getItem('siteLang');
-          if (saved === 'en' || saved === 'es') initLang = saved;
-          else if (navigator.language && navigator.language.toLowerCase().startsWith('en')) initLang = 'en';
-        } catch(e) {}
-      }
-
-      // Initialize UI + integrations
-      setActive(initLang);
-    })();
-  </script>
+ <!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/696938d07c9eed197f687b34/1jf1gbs5o';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
 
   <!-- Tawk.to embed (leave as-is unless your property ID is different) -->
   <script type="text/javascript">
@@ -483,3 +427,4 @@
 
 </body>
 </html>
+
