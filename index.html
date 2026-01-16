@@ -283,13 +283,15 @@
     </footer>
   </main>
 
-  <!-- WhatsApp floating button (one source of truth) -->
-  <a id="wa-float"
-     href="https://wa.me/526461097858"
-     target="_blank"
-     rel="noopener noreferrer"
-     class="whatsapp-float"
-     aria-label="Chatear por WhatsApp">
+  <!-- WhatsApp floating button (single source of truth) -->
+  <a
+    id="wa-float"
+    class="whatsapp-float"
+    href="https://wa.me/526461097858"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Chatear por WhatsApp"
+  >
     <!-- Inline SVG icon -->
     <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true" focusable="false">
       <path fill="#ffffff" d="M20.52 3.48A11.86 11.86 0 0012 0C5.37 0 .01 5.36.01 12a11.9 11.9 0 001.64 6.02L0 24l6.2-1.62A11.94 11.94 0 0012 24c6.63 0 12-5.36 12-12 0-3.2-1.25-6.2-3.48-8.52zM12 21.6c-1.1 0-2.18-.28-3.12-.8l-.22-.12-3.68.96.98-3.6-.14-.24A8.4 8.4 0 013.6 12c0-4.64 3.76-8.4 8.4-8.4 4.64 0 8.4 3.76 8.4 8.4 0 4.64-3.76 8.4-8.4 8.4z"/>
@@ -297,7 +299,7 @@
     </svg>
   </a>
 
-  <!-- Helper: keep Tawk language in sync with site language -->
+  <!-- Helper: keep Tawk language in sync + WhatsApp UX localized -->
   <script>
     // Set Tawk.to language safely (used on load and on language toggle)
     window.setTawkLanguage = function(langCode){
@@ -364,7 +366,10 @@
         try { localStorage.setItem('siteLang', lang); } catch(e) {}
       }
 
-      // Make available for CTA buttons
+      // Make available for others (e.g., the robust patch wraps this)
+      window.setActive = setActive;
+
+      // CTA helper: switch language and scroll to proper section
       window.book = function(lang){
         setActive(lang);
         setTimeout(()=>{
@@ -394,9 +399,6 @@
 
       // Initialize UI + integrations
       setActive(initLang);
-
-      // Expose in case you need it elsewhere
-      window.setActive = setActive;
     })();
   </script>
 
@@ -413,6 +415,71 @@
   })();
   </script>
   <!-- End of Tawk.to Script -->
+
+  <!-- Robust patch: ensure language switches even with load timing issues -->
+  <script>
+    (function(){
+      // Ensure Tawk API global exists
+      window.Tawk_API = window.Tawk_API || {};
+
+      // Map our site language to Tawk language codes
+      function mapLang(lang) {
+        return (lang === 'en') ? 'en' : 'es';
+      }
+
+      // Call setLanguage safely with retries if the widget isn't ready yet
+      function setTawkLanguageSafe(lang) {
+        var code = mapLang(lang);
+        var tries = 0;
+        var maxTries = 20;   // ~4 seconds
+        var delay = 200;
+
+        function attempt() {
+          tries++;
+          if (window.Tawk_API && typeof Tawk_API.setLanguage === 'function') {
+            try {
+              Tawk_API.setLanguage(code);
+              return;
+            } catch (e) {}
+          }
+          if (tries < maxTries) setTimeout(attempt, delay);
+        }
+        attempt();
+      }
+
+      // On widget load, sync to current <html lang>
+      var prevOnLoad = window.Tawk_API.onLoad;
+      window.Tawk_API.onLoad = function() {
+        try { if (typeof prevOnLoad === 'function') prevOnLoad(); } catch(e) {}
+        var current = (document.documentElement.lang === 'en') ? 'en' : 'es';
+        setTawkLanguageSafe(current);
+      };
+
+      // Wrap setActive if available so every toggle updates Tawk
+      var wrapped = false;
+      function wrapSetActive() {
+        if (wrapped) return;
+        if (typeof window.setActive === 'function') {
+          var original = window.setActive;
+          window.setActive = function(lang) {
+            original(lang);
+            setTawkLanguageSafe(lang);
+          };
+          wrapped = true;
+        }
+      }
+      // Try to wrap now and after DOM is ready
+      wrapSetActive();
+      document.addEventListener('DOMContentLoaded', wrapSetActive);
+
+      // Fallback: if user clicks the buttons, still force language
+      document.addEventListener('click', function(ev){
+        var id = ev.target && ev.target.id;
+        if (id === 'btn-es') setTawkLanguageSafe('es');
+        if (id === 'btn-en') setTawkLanguageSafe('en');
+      });
+    })();
+  </script>
 
 </body>
 </html>
