@@ -283,53 +283,7 @@
     </footer>
   </main>
 
-  <!-- WhatsApp floating button (single source of truth) -->
-  <a
-    id="wa-float"
-    class="whatsapp-float"
-    href="https://wa.me/526461097858"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Chatear por WhatsApp"
-  >
-    <!-- Inline SVG icon -->
-    <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true" focusable="false">
-      <path fill="#ffffff" d="M20.52 3.48A11.86 11.86 0 0012 0C5.37 0 .01 5.36.01 12a11.9 11.9 0 001.64 6.02L0 24l6.2-1.62A11.94 11.94 0 0012 24c6.63 0 12-5.36 12-12 0-3.2-1.25-6.2-3.48-8.52zM12 21.6c-1.1 0-2.18-.28-3.12-.8l-.22-.12-3.68.96.98-3.6-.14-.24A8.4 8.4 0 013.6 12c0-4.64 3.76-8.4 8.4-8.4 4.64 0 8.4 3.76 8.4 8.4 0 4.64-3.76 8.4-8.4 8.4z"/>
-      <path fill="#25D366" d="M17.2 14.1c-.3-.15-1.78-.88-2.06-.98-.28-.1-.48-.15-.68.15-.2.3-.78.98-.96 1.18-.18.2-.36.22-.66.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.48-1.78-1.65-2.08-.17-.3-.02-.46.13-.61.13-.13.3-.36.45-.54.15-.18.2-.3.3-.5.1-.2 0-.38-.05-.53-.05-.15-.68-1.64-.93-2.25-.24-.58-.49-.5-.68-.51-.18-.01-.38-.01-.58-.01-.2 0-.53.07-.8.3-.27.23-1.04 1.02-1.04 2.48 0 1.46 1.06 2.88 1.2 3.08.14.2 2.08 3.36 5.04 4.72 2.96 1.36 2.96.91 3.5.86.54-.05 1.78-.72 2.03-1.42.25-.7.25-1.3.18-1.42-.07-.12-.26-.18-.56-.33z"/>
-    </svg>
-  </a>
-
-  <!-- Helper: keep Tawk language in sync + WhatsApp UX localized -->
-  <script>
-    // Set Tawk.to language safely (used on load and on language toggle)
-    window.setTawkLanguage = function(langCode){
-      var code = (langCode === 'en') ? 'en' : 'es';
-      if (window.Tawk_API && typeof Tawk_API.setLanguage === 'function') {
-        try { Tawk_API.setLanguage(code); } catch(e) {}
-      } else {
-        // If widget not ready yet, ensure it's applied when it loads
-        window.Tawk_API = window.Tawk_API || {};
-        var prevOnLoad = Tawk_API.onLoad;
-        Tawk_API.onLoad = function(){
-          if (typeof prevOnLoad === 'function') { try { prevOnLoad(); } catch(e) {} }
-          try { Tawk_API.setLanguage(code); } catch(e) {}
-        };
-      }
-    };
-
-    // Update WhatsApp button (label + message) by language
-    window.updateWhatsAppUX = function(lang){
-      var a = document.getElementById('wa-float');
-      if (!a) return;
-      var isEn = (lang === 'en');
-      var aria = isEn ? 'Chat on WhatsApp' : 'Chatear por WhatsApp';
-      var msg  = isEn
-        ? "Hello! I'm contacting Mecánico Ventura for service information."
-        : "Hola, estoy contactando a Mecánico Ventura para información de servicios.";
-      a.setAttribute('aria-label', aria);
-      a.href = 'https://wa.me/526461097858?text=' + encodeURIComponent(msg);
-    };
-  </script>
+ 
 
 <!--Start of Tawk.to Script-->
 <script type="text/javascript">
@@ -347,6 +301,7 @@ s0.parentNode.insertBefore(s1,s0);
 
 </body>
 </html>
+
 
 
 
